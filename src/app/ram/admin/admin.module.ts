@@ -36,8 +36,14 @@ import { ProductFormComponent } from './components/product-form/product-form.com
         component:ManageOrdersComponent,
         canActivate:[AuthGuardService, AdminAuthGuartService] 
       },
+      
       { 
         path:'admin/products/new', 
+        component:ProductFormComponent,
+        canActivate:[AuthGuardService, AdminAuthGuartService] 
+      },
+      { 
+        path:'admin/products/:id', 
         component:ProductFormComponent,
         canActivate:[AuthGuardService, AdminAuthGuartService] 
       },

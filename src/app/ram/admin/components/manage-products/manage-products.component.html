@@ -1,8 +1,40 @@
 <main role="main" class="container">
-  <a class="btn btn-primary" [routerLink]="['/admin/products/new']">Add Product</a>
+  
   <div class="jumbotron">
-    <h1>Manage Products only for Super Admin Components</h1>
-    <p class="lead">This example is a Manage products only for sumer admin component</p>
+      <a class="btn btn-primary float-right" [routerLink]="['/admin/products/new']">Add Product</a>
+    <h1>Manage Products</h1>
+    
+    <div class="row" style="margin:10px 0;">
+      <div class="col-2">
+        Search by Title:- 
+      </div>
+      <div class="col">
+          <input type="text" #query
+          class="form-control" placeholder="Search..."
+            (keyup)="filter(query.value)" />
+      </div>
+      
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filterProducts">
+          <td>{{item.title}}</td>
+          <td>{{item.category}}</td>
+          <td>{{item.price | currency:'&#x20B9; ':true}}</td>
+          <td>
+            <a [routerLink]="['/admin/products/', item.$key]">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
     
   </div>
 </main>

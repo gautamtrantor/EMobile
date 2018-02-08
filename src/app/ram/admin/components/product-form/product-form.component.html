@@ -1,82 +1,104 @@
 
-
-<div class="row">
-    <div class="col-md-6">
-        <form novalidate (ngSubmit)="productSubmit()" [formGroup]="productAddEditForm">
-            <div class="form-group" [ngClass]="{'has-error': (productAddEditForm.get('title').touched || 
-            productAddEditForm.get('title').dirty) &&
-            !productAddEditForm.get('title').valid }">
-              <label for="title">Title</label>
-              <input type="text"  
-                formControlName="title" 
-                id="title" 
-                class="form-control"  />
-                <div *ngIf="(productAddEditForm.get('title').touched || 
-                productAddEditForm.get('title').dirty) && 
-                productAddEditForm.get('title').errors" class="alert alert-danger">
-                  Title is required.
-                </div>
-            </div> 
+<main role="main" class="container">
+  <div class="jumbotron">
+    <h1>Product <span *ngIf="id">Edit</span> <span *ngIf="!id">Add</span></h1>
+    
+    <div class="row">
+      <div class="col-md-6">
+          <form novalidate (ngSubmit)="productSubmit()" [formGroup]="productAddEditForm">
+              <div class="form-group" [ngClass]="{'has-error': (productAddEditForm.get('title').touched || 
+              productAddEditForm.get('title').dirty) &&
+              !productAddEditForm.get('title').valid }">
+                <label for="title">Title</label>
+                <input type="text"  
+                  formControlName="title" 
+                  id="title" 
+                  [(ngModel)]="product.title"
+                  class="form-control"  />
+                  <div *ngIf="(productAddEditForm.get('title').touched || 
+                  productAddEditForm.get('title').dirty) && 
+                  productAddEditForm.get('title').errors" class="alert alert-danger">
+                    Title is required.
+                  </div>
+              </div> 
+              
             
-          
-            <div class="form-group" [ngClass]="{'has-error': (productAddEditForm.get('price').touched || 
-            productAddEditForm.get('price').dirty) &&
-            !productAddEditForm.get('price').valid }">
-              <label for="price">Price</label>
-              <input type="number"  
-                formControlName="price" 
-                id="price" 
-                class="form-control"  />
-                <div *ngIf="(productAddEditForm.get('price').touched || 
-                productAddEditForm.get('price').dirty) && 
-                productAddEditForm.get('price').errors" class="alert alert-danger">
-                  <div *ngIf="productAddEditForm.get('price').errors.required">Price is required.</div>
-                  <div *ngIf="productAddEditForm.get('price').errors.min">Price should be 0 or higher.</div>
-                </div>
-            </div>
-
+              <div class="form-group" [ngClass]="{'has-error': (productAddEditForm.get('price').touched || 
+              productAddEditForm.get('price').dirty) &&
+              !productAddEditForm.get('price').valid }">
+                <label for="price">Price</label>
+                <input type="number"  
+                  formControlName="price" 
+                  id="price" 
+                  [(ngModel)]="product.price"
+                  class="form-control"  />
+                  <div *ngIf="(productAddEditForm.get('price').touched || 
+                  productAddEditForm.get('price').dirty) && 
+                  productAddEditForm.get('price').errors" class="alert alert-danger">
+                    <div *ngIf="productAddEditForm.get('price').errors.required">Price is required.</div>
+                    <div *ngIf="productAddEditForm.get('price').errors.min">Price should be 0 or higher.</div>
+                  </div>
+              </div>
+  
+              
             
-          
-            <div class="form-group">
-              <label for="category">Category</label>
-              <select   
-                formControlName="category"
-                id="category" class="form-control">
-                <option  *ngFor="let item of category$ | async" [value]="item.$key">
-                  {{item.name}}
-                </option>
-              </select>
+              <div class="form-group"  [ngClass]="{'has-error': (productAddEditForm.get('category').touched || 
+              productAddEditForm.get('category').dirty) &&
+              !productAddEditForm.get('category').valid }">
+                <label for="category">Category</label>
+                <select   
+                [(ngModel)]="product.category"
+                  formControlName="category"
+                  id="category" class="form-control">
+                  <option  *ngFor="let item of categories$ | async" [value]="item.$key">
+                    {{item.name}}
+                  </option>
+                </select>
+                <div *ngIf="(productAddEditForm.get('category').touched || 
+                  productAddEditForm.get('category').dirty) && 
+                  productAddEditForm.get('category').errors" class="alert alert-danger">
+                    <div *ngIf="productAddEditForm.get('category').errors.required"> Category is required.</div>
+                  </div>
+              </div>
+            
+              <div class="form-group" [ngClass]="{'has-error': (productAddEditForm.get('imageUrl').touched || 
+              productAddEditForm.get('imageUrl').dirty) &&
+              !productAddEditForm.get('imageUrl').valid }">
+                <label for="imageUrl">ImageUrl</label>
+                <input type="text"  
+                  formControlName="imageUrl"
+                  id="imageUrl" class="form-control"
+                  [(ngModel)]="product.imageUrl"   />
+                  <div *ngIf="(productAddEditForm.get('imageUrl').touched || 
+                  productAddEditForm.get('imageUrl').dirty) && 
+                  productAddEditForm.get('imageUrl').errors" class="alert alert-danger">
+                    <div *ngIf="productAddEditForm.get('imageUrl').errors.required">Image Url is required.</div>
+                    <!-- <div *ngIf="productAddEditForm.get('imageUrl').errors.url">Please enter a valid URL.</div> -->
+                  </div>
+              </div>
+            
+              <button type="submit" [disabled]='!productAddEditForm.valid' class="btn btn-primary">
+                  <span *ngIf="id">Update</span> <span *ngIf="!id">Save</span>
+              </button>
+              <button *ngIf="id" type="button" class="btn btn-danger" (click)="delete()">Remove</button>
+            </form>
+      </div>
+      <div class="col-md-6">
+          <div class="card" *ngIf="product.title">
+            <img class="card-img-top" [src]="product.imageUrl" *ngIf="product.imageUrl" [alt]="" [title]="" >
+            <div class="card-body">
+              <h5 class="card-title">{{product.title}}</h5>
+              <p class="card-text">{{product.price | currency:'&#x20B9; ':true}}</p>
             </div>
-            <!-- <div *ngIf="category.touched && category.invalid" class="alert alert-danger">
-                Category is required.
-            </div>  -->
-          
-            <div class="form-group">
-              <label for="imageUrl">ImageUrl</label>
-              <input type="text"  
-                formControlName="imageUrl"
-                id="imageUrl" class="form-control"   />
-            </div>
-            <!-- <div *ngIf="imageUrl.touched && imageUrl.invalid" class="alert alert-danger">
-                <div *ngIf="imageUrl.errors.required">Image Url is required.</div>
-                <div *ngIf="imageUrl.errors.url">Please enter a valid URL.</div>
-            </div>   -->
-          
-            <button type="submit" [disabled]='!productAddEditForm.valid' class="btn btn-primary">Save</button>
-            <!-- <button type="button" class="btn btn-danger" (click)="delete()">Remove</button> -->
-          </form>
-    </div>
-    <div class="col-md-6">
-        <!-- <div class="card" style="width: 18rem;">
-          <img class="card-img-top" [src]="imageUrl.value" *ngIf="imageUrl.value" [alt]="" [title]="" >
-          <div class="card-body">
-            <h5 class="card-title">{{title.value}}</h5>
-            <p class="card-text">{{price.value | currency:'USD':true}}</p>
           </div>
-        </div> -->
-        <!-- <product-cart [product]="product" [show-actions]="false"></product-cart> -->
+          <!-- <product-cart [product]="product" [show-actions]="false"></product-cart> -->
+      </div>
     </div>
   </div>
+</main>
+
+
+
   
   
   
