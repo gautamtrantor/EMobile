@@ -1,0 +1,15 @@
+<div class="row mt-5">
+  <div class="col-3">
+    <fiter-products [category]="_category"></fiter-products>
+  </div>
+  <div class="col-9">
+    <div class="row">
+      <ng-container *ngFor="let p of filterProducts; let i = index;">
+        <div class="col">
+            <product-card [product]="p"></product-card>
+        </div>
+        <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+      </ng-container>
+    </div>
+  </div>
+</div>

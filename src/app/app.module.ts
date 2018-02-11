@@ -14,6 +14,7 @@ import { AdminModule } from './ram/admin/admin.module';
 import { environment } from '../environments/environment';
 import { SharedModule } from './ram/shared/shared.module';
 import { CoreModule } from './ram/core/core-module.module';
+import { ProductsModule } from './ram/product/products.module';
 
 
 
@@ -31,7 +32,7 @@ import { CoreModule } from './ram/core/core-module.module';
     AdminModule,
     CoreModule,
     SharedModule,
-    
+    ProductsModule,
     //NgbModule.forRoot(),
     RouterModule.forRoot([])
   ],
