@@ -5,6 +5,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ProductsComponent } from './components/products/products.component';
 import { FiterProductsComponent } from './components/fiter-products/fiter-products.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 
 @NgModule({
@@ -23,6 +24,9 @@ import { ProductCardComponent } from './components/product-card/product-card.com
   ],
   exports: [
     ProductCardComponent
+  ],
+  providers:[
+    ShoppingCartService
   ]
 })
 export class ProductsModule { }
