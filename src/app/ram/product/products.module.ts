@@ -6,11 +6,13 @@ import { ProductsComponent } from './components/products/products.component';
 import { FiterProductsComponent } from './components/fiter-products/fiter-products.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { ShoppingCartService } from './services/shopping-cart.service';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild([
       {path:'', component:ProductsComponent},
       {path:'shopping-cart', component:ShoppingCartComponent}
