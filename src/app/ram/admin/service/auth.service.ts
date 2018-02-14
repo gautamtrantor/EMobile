@@ -31,7 +31,7 @@ export class AuthService {
   get appUser$(): Observable<AppUser>{
     return this.user$
     .switchMap(user => {
-      console.log('user--', user);
+      //console.log('user--', user);
 
       if(user) return this.userService.get(user.uid);
 
