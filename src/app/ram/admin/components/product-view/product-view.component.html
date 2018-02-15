@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-6">
+      <div class="card mt-4" *ngIf="allData">
+          <div class="card-body">
+            <h4 class="card-title">Your Order </h4>
+            <p class="card-text">You have {{allData[1].length}} items in your Order History</p>
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let item of allData[1]" class="list-group-item">
+                  <span [title]="item.product.title" class="thumbail" [style.backgroundImage]="'url('+item.product.imageUrl+')'"></span>
+                {{item.quantity}} X {{ item.product.title }}
+      
+                
+                <div class="float-right">
+                  {{item.totalPrice | currency:'&#x20B9; ':true}}
+                </div>
+              </li>
+        
+              <li class="list-group-item font-weight-bold">
+                Total
+                <div class="float-right">
+                  {{totalPrice | currency:'&#x20B9; ':true}}
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+  </div>
+  <div class="col-6">
+    <div class="card mt-4" *ngIf="allData">
+      <div class="card-body">
+        <h4 class="card-title">Order Dispatch to this Address </h4>
+        <p class="card-text">Name :- {{allData[2].name | uppercase}}</p>
+        <p>
+            Address Line1 :- {{allData[2].addressLine1 | uppercase}} <br />
+            Address Line2 :- {{allData[2].addressLine2 | uppercase}} <br />
+            City :- {{allData[2].city | uppercase}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+  

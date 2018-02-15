@@ -11,7 +11,11 @@
           <tr *ngFor="let item of userData">
             <td>{{item.shipping.name}}</td>
             <td>{{item.datePlaced |  date}}</td>
-            <td></td>
+            <td>
+              <a [routerLink]="['/my/orders/view/', item.$key]">
+                View
+              </a>
+            </td>
           </tr>
       </tbody>
     </table>

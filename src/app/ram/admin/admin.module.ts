@@ -17,6 +17,7 @@ import { AdminAuthGuartService } from './service/admin-auth-guart.service';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProductsModule } from '../product/products.module';
+import { ProductViewComponent } from './components/product-view/product-view.component';
 
 
 
@@ -34,6 +35,11 @@ import { ProductsModule } from '../product/products.module';
     FormsModule,
    // DataTableModule,
     RouterModule.forChild([
+      { 
+        path:'my/orders/view/:id', 
+        component:ProductViewComponent, 
+        canActivate:[AuthGuardService] 
+      },
       { 
         path:'my/orders', 
         component:MyOrdersComponent, 
@@ -65,7 +71,7 @@ import { ProductsModule } from '../product/products.module';
   declarations: [
     MyOrdersComponent, 
     ManageOrdersComponent, 
-    ManageProductsComponent, ProductFormComponent
+    ManageProductsComponent, ProductFormComponent, ProductViewComponent
   ],
   providers: [
     AuthService, // for login logout service

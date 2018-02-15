@@ -17,6 +17,10 @@ export class OrderService {
     return this.db.list('/orders');
   }
 
+  getOrderByProductId(productId:string){
+    return this.db.list('/orders/' + productId);
+  }
+
   getOrdersByUser(userId:string){
     return this.db.list('/orders/', {
       query: {
