@@ -1,5 +1,5 @@
 <h1>Shopping Cart</h1>
-<ng-container *ngIf="cart$ | async as cart">
+<div class="row col-9" *ngIf="cart$ | async as cart">
   <p>
     You have {{cart.totalItemsCount}} items in your shopping cart.
   </p>
@@ -7,21 +7,25 @@
   <table class="table">
     <thead>
       <tr>
+        <th></th>
         <th>Product</th>
-        <th>Quantity</th>
-        <th>Total Price</th>
+        <th style="width:255px;" class="text-center">Quantity</th>
+        <th style="width:150px;" class="text-right">Total Price</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of cart.items">
         <td>
-          {{item.title}}
+          <div [title]="item.title" [style.backgroundImage]="'url('+item.imageUrl+')'" class="thumbnail"></div>
         </td>
         <td>
+          {{item.title}}
+        </td>
+        <td class="text-center">
             <!-- {{item.quantity}} -->
             <product-quantity [product]="item" [shopping-cart]="cart"></product-quantity>
         </td>
-        <td>
+        <td class="text-right">
           {{item.totalPrice | currency:'&#x20B9; ':true}}
         </td>
       </tr>
@@ -30,7 +34,8 @@
       <tr>
         <th></th>
         <th></th>
-        <th>{{ cart.totalPrice | currency:'&#x20B9; ':true }}</th>
+        <th></th>
+        <th class="text-right">{{ cart.totalPrice | currency:'&#x20B9; ':true }}</th>
       </tr>
     </tfoot>
   </table>
@@ -39,4 +44,4 @@
     class="btn btn-danger btn-sm">
     Clear Shopping Cart
   </button>
-</ng-container>
+</div>

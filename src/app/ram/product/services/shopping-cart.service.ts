@@ -59,10 +59,10 @@ export class ShoppingCartService {
           price: product.price, 
           quantity: quantity
       })
+   })
   }
 
-  
-  
+ 
 
 
 
