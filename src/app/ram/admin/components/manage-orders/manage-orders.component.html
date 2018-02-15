@@ -1,7 +1,19 @@
 <main role="main" class="container">
-  <div class="jumbotron">
-    <h1>Manage Orders only for Super Admin Components</h1>
-    <p class="lead">This example is a Manage orders only for sumer admin component</p>
-    
-  </div>
-</main>
+    <div class="jumbotron">
+      <h1>Manage Orders</h1>
+      <table class="table">
+        <thead>
+          <th>Customer</th>
+          <th>Date</th>
+          <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of userData">
+              <td>{{item.shipping.name}}</td>
+              <td>{{item.datePlaced |  date}}</td>
+              <td></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
