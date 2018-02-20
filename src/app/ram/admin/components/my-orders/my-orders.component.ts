@@ -19,7 +19,7 @@ export class MyOrdersComponent implements OnInit {
     })
     this.orderService.getOrdersByUser(this.userId).subscribe(data => {
       this.userData = data;
-      console.log('this.userData', this.userData);
+      //console.log('this.userData', this.userData);
     })
 
   }

@@ -1,0 +1,18 @@
+
+
+
+  <div class="card">
+      <h3 class="card-header text-center">  Order Dispatch to this Address </h3>
+      <div class="card-body">
+        <p class="card-text">Order ID :- <button class="btn  btn-light sm-btn">{{OrderId}}</button></p>
+        <p class="card-text">Name :- {{UserData[2].name | uppercase}}</p>
+        <p class="card-text">
+            Address Line1 :- {{UserData[2].addressLine1 | uppercase}} <br />
+            Address Line2 :- {{UserData[2].addressLine2 | uppercase}} <br />
+            City :- {{UserData[2].city | uppercase}}
+        </p>
+      </div>
+      <div *ngIf="UserId" class="card-footer text-muted text-center">
+          User ID :- <span class="font-weight-bold">{{userId}}</span>
+      </div>
+    </div>

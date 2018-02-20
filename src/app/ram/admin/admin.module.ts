@@ -18,6 +18,9 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { SharedModule } from '../shared/shared.module';
 import { ProductsModule } from '../product/products.module';
 import { ProductViewComponent } from './components/product-view/product-view.component';
+import { ProductViewCartComponent } from './components/product-view-cart/product-view-cart.component';
+import { ProductOrderCartComponent } from './components/product-order-cart/product-order-cart.component';
+import { AdminProductViewComponent } from './components/admin-product-view/admin-product-view.component';
 
 
 
@@ -46,6 +49,11 @@ import { ProductViewComponent } from './components/product-view/product-view.com
         canActivate:[AuthGuardService] 
       },
       { 
+        path:'admin/orders/view/:id', 
+        component:AdminProductViewComponent,
+        canActivate:[AuthGuardService, AdminAuthGuartService] 
+      },
+      { 
         path:'admin/orders', 
         component:ManageOrdersComponent,
         canActivate:[AuthGuardService, AdminAuthGuartService] 
@@ -71,7 +79,7 @@ import { ProductViewComponent } from './components/product-view/product-view.com
   declarations: [
     MyOrdersComponent, 
     ManageOrdersComponent, 
-    ManageProductsComponent, ProductFormComponent, ProductViewComponent
+    ManageProductsComponent, ProductFormComponent, ProductViewComponent, ProductViewCartComponent, ProductOrderCartComponent, AdminProductViewComponent
   ],
   providers: [
     AuthService, // for login logout service

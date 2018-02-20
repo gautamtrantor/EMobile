@@ -21,7 +21,7 @@ export class ProductQuantityComponent implements OnInit {
 
   addToCart(){
     this.shoppingCartService.addToCart(this.product);
-    console.log(this.product)
+    //console.log(this.product)
   }
   removeToCart(){
     this.shoppingCartService.removeFromCart(this.product);
