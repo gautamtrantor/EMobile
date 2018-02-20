@@ -1,6 +1,6 @@
 
 <main role="main" class="container">
-  <div class="jumbotron">
+  <div class="jumbotron" *ngIf="product">
     <h1>Product <span *ngIf="id">Edit</span> <span *ngIf="!id">Add</span></h1>
     
     <div class="row">
